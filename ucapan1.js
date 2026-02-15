@@ -2,31 +2,25 @@ function blowCandles() {
   const flames = document.querySelectorAll(".flame");
   const cake = document.getElementById("cakeWrapper");
 
-  // 🕯️ Padamkan lilin
   flames.forEach(flame => {
     flame.style.animation = "none";
     flame.style.opacity = "0";
   });
 
-  // 🎂 Getarkan kue
   cake.classList.add("shake");
 
-  // 🎉 Confetti dari atas
   createConfetti();
 
-  // ⏳ Tunggu 5 detik → fade out → pindah page
   setTimeout(() => {
     document.body.classList.add("fade-out");
 
     setTimeout(() => {
       window.location.href = "ucapan2.html";
-    }, 600); // durasi fade-out
+    }, 600); 
   }, 5000);
 }
 
-/* =========================
-   CONFETTI
-   ========================= */
+/*CONFETTI*/
 
 function createConfetti() {
   const container = document.getElementById("confetti");
@@ -54,10 +48,9 @@ function createConfetti() {
   }
 }
 
-/* =========================
-   PAGE FADE-IN (ON LOAD)
-   ========================= */
+/*PAGE FADE-IN (ON LOAD)*/
 
 window.addEventListener("load", () => {
   document.body.classList.add("fade-in");
 });
+
