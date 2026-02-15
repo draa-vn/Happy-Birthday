@@ -8,7 +8,7 @@
 body {
   height: 100vh;
   background: 
-    url("img/background.jpg") center / cover no-repeat;
+    url("background.jpg") center / cover no-repeat;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -17,7 +17,6 @@ body {
   position: relative;
 }
 
-/* ⭐ TAMBAHAN: OVERLAY GELAP */
 body::before {
   content: "";
   position: fixed;
@@ -27,16 +26,12 @@ body::before {
   z-index: 0;
 }
 
-/* ⭐ TAMBAHAN: supaya semua konten di atas overlay */
 body > * {
   position: relative;
   z-index: 1;
 }
 
-/* ===================== */
 /* JUDUL */
-/* ===================== */
-
 .title {
   color: #ff6fcf;
   font-size: 48px;
@@ -48,19 +43,13 @@ body > * {
      2px  2px 0 white;
 }
 
-/* ===================== */
 /* WRAPPER */
-/* ===================== */
-
 .cake-wrapper {
   position: relative;
   margin-bottom: 40px;
 }
 
-/* ===================== */
 /* GETAR */
-/* ===================== */
-
 .shake {
   animation: shake 0.4s;
 }
@@ -73,10 +62,7 @@ body > * {
   100% { transform: translateX(0); }
 }
 
-/* ===================== */
 /* LILIN */
-/* ===================== */
-
 .candles {
   display: flex;
   justify-content: center;
@@ -116,9 +102,8 @@ body > * {
   }
 }
 
-/* ===================== */
+
 /* KUE */
-/* ===================== */
 
 .cake {
   width: 300px;
@@ -164,9 +149,8 @@ body > * {
   border-radius: 28px 28px 10px 10px;
 }
 
-/* ===================== */
+
 /* BUTTON */
-/* ===================== */
 
 .blow-btn {
   background: none;
@@ -182,9 +166,7 @@ body > * {
   transform: scale(1.05);
 }
 
-/* ===================== */
 /* CONFETTI */
-/* ===================== */
 
 .confetti-container {
   position: fixed;
@@ -209,10 +191,7 @@ body > * {
   }
 }
 
-/* ===================== */
 /* PAGE TRANSITION */
-/* ===================== */
-
 .fade-in {
   animation: fadeIn 0.8s ease forwards;
 }
@@ -236,3 +215,4 @@ body > * {
   from { opacity: 1; }
   to { opacity: 0; }
 }
+
