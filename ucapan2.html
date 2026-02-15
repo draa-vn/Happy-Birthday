@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Happy Birthday</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Bree+Serif&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    overflow: hidden;
+    font-family: 'Bree Serif', serif;
+    background:
+        linear-gradient(rgba(0, 0, 0, 0.6), rgba(0,0,0,0.35)),
+        url("img/bg.jpg") center / cover no-repeat;
+}
+
+/* AREA TENGAH */
+.container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 70%;
+    max-width: 800px;
+    height: 80vh;
+    overflow: hidden;
+}
+
+/* BOX GELAP */
+.overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+    border-radius: 12px;
+}
+
+/* TEKS */
+.text {
+    position: absolute;
+    width: 100%;
+    padding: 40px;
+    font-size: 18px;
+    line-height: 2;
+    color: white;
+    white-space: pre-wrap;
+    text-align: center;
+    z-index: 1;
+
+    text-shadow:
+        -1px -1px 0 #ff69b4,
+         1px -1px 0 #ff69b4,
+        -1px  1px 0 #ff69b4,
+         1px  1px 0 #ff69b4;
+}
+
+/* ACTION */
+.actions {
+    position: absolute;
+    bottom: 30px;
+    width: 100%;
+    display: none;
+    justify-content: space-between;
+    padding: 0 80px;
+    z-index: 5;
+}
+
+.btn {
+    padding: 10px 22px;
+    border-radius: 15px;
+    border: none;
+    background: #9d2561;
+    color: white;
+    font-family: 'Bree Serif', serif;
+    cursor: pointer;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background: #8e124e;
+}
+
+/* BUTTON JEBAKAN */
+.trap-btn {
+    position: absolute;
+    padding: 10px 22px;
+    border-radius: 15px;
+    border: none;
+    background: #9d2561;
+    color: white;
+    font-family: 'Bree Serif', serif;
+    cursor: pointer;
+    font-size: 14px;
+    z-index: 10;
+    display: none;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <div class="overlay"></div>
+    <div class="text" id="scrollText"> 
+haiii cill 🤍
+selamatt ulang tahunn sayangg nyaa akuu..
+selamat bertambah umur anakk cantikk,
+ciee sekarang udahh makinn deket sama dewasa diaa...
+
+happy happy terus yaa sayangg,
+aku akan selalu dukung semua hal baik yang kamu impikan ituu ayy,
+aku akan selalu bantu kamu untuk gapai impian impian kamuu,
+dooa ku untuk kamu di tahun inii.................
+
+nahh ituu ada di next slide hahahahaha
+biar penasaran ajaa.. okeh lanjut,
+
+selanjut nyaa aku mauu bilang terimakasih
+untuk anak kecil ku inii,
+
+terimakasih karna sudah mau bertahan di bumi bagian sini,
+terimakasih karena sudah mau terus bertahan sama aku,
+terimakasih karna sudah beri aku semua hal hal yang kamu bisa,
+terimakasih sudah mau nunggu aku selama ituu,
+terimakasih sudah sabar dan mau nerima apa ada nyaa diri inii,
+terimakasih sudah mau untuk jadi diri mu sendiri di depan ku,
+terimakasih sudah mau lihat aku sebagai orang yang bisa kamu andalkan,
+dan terimakasih untuk semuaa nyaa 💖
+    </div>
+</div>
+
+<div class="actions" id="actions">
+    <button class="btn" onclick="ulang()">ulang dong</button>
+    <button class="btn" id="btnLanjut" onclick="startTrap()">yuk lanjut</button>
+</div>
+
+<button class="trap-btn" id="trapBtn"></button>
+
+<script>
+const text = document.getElementById("scrollText");
+const container = document.querySelector(".container");
+const actions = document.getElementById("actions");
+const trapBtn = document.getElementById("trapBtn");
+const btnLanjut = document.getElementById("btnLanjut");
+
+const originalText = text.innerText;
+let pos, anim;
+
+const trapTexts = [
+    "Kamu cantik deh coba click ini",
+    "yuk coba lagi di click kalo mau lanjut",
+    "ehh yakinn nih mau lanjut?",
+    "eitss coba click lagi",
+    "Yaudah tutup mata dulu"
+];
+
+let trapIndex = 0;
+
+/* SCROLL TEKS */
+function startScroll() {
+    cancelAnimationFrame(anim);
+    actions.style.display = "none";
+    trapBtn.style.display = "none";
+    trapIndex = 0;
+
+    text.innerText = originalText;
+    text.style.transform = "none";
+
+    pos = container.offsetHeight;
+    text.style.top = pos + "px";
+
+    function scrollUp() {
+        pos -= 0.5;
+        text.style.top = pos + "px";
+
+        if (pos < -text.offsetHeight) {
+            actions.style.display = "flex";
+            return;
+        }
+        anim = requestAnimationFrame(scrollUp);
+    }
+    scrollUp();
+}
+
+/* ULANG */
+function ulang() {
+    startScroll();
+}
+
+/* MULAI JEBAKAN */
+function startTrap() {
+    btnLanjut.style.display = "none"; // 🔥 tombol lanjut dihapus
+    showTrapButton();
+}
+
+/* JEBAKAN DI LUAR BOX */
+function showTrapButton() {
+    if (trapIndex < trapTexts.length) {
+        trapBtn.innerText = trapTexts[trapIndex];
+        trapBtn.style.display = "block";
+
+        const box = container.getBoundingClientRect();
+        const btnW = 180;
+        const btnH = 60;
+        let x, y;
+
+        const area = Math.floor(Math.random() * 4);
+        if (area === 0) {
+            x = Math.random() * (box.width - btnW) + box.left;
+            y = box.top - btnH - 15;
+        } else if (area === 1) {
+            x = Math.random() * (box.width - btnW) + box.left;
+            y = box.bottom + 15;
+        } else if (area === 2) {
+            x = box.left - btnW - 15;
+            y = Math.random() * (box.height - btnH) + box.top;
+        } else {
+            x = box.right + 15;
+            y = Math.random() * (box.height - btnH) + box.top;
+        }
+
+        trapBtn.style.left = x + "px";
+        trapBtn.style.top = y + "px";
+
+        trapBtn.onclick = () => {
+            trapIndex++;
+            showTrapButton();
+        };
+    } else {
+        finalMessage();
+    }
+}
+
+/* PESAN TERAKHIR */
+function finalMessage() {
+    trapBtn.style.display = "none";
+    text.innerText = "yaudahh… Tutup mata dulu makanya hitung 10 detik 🤍 gaboleh curang yaa..";
+    text.style.top = "50%";
+    text.style.transform = "translateY(-50%)";
+
+    setTimeout(() => {
+        window.location.href = "ucapan3.html";
+    }, 9000);
+}
+
+/* START */
+startScroll();
+</script>
+
+</body>
+</html>

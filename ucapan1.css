@@ -1,0 +1,238 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Bree Serif', serif;
+}
+
+body {
+  height: 100vh;
+  background: 
+    url("img/background.jpg") center / cover no-repeat;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+
+/* ⭐ TAMBAHAN: OVERLAY GELAP */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.242);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ⭐ TAMBAHAN: supaya semua konten di atas overlay */
+body > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* ===================== */
+/* JUDUL */
+/* ===================== */
+
+.title {
+  color: #ff6fcf;
+  font-size: 48px;
+  margin-bottom: 40px;
+  text-shadow:
+    -2px -2px 0 white,
+     2px -2px 0 white,
+    -2px  2px 0 white,
+     2px  2px 0 white;
+}
+
+/* ===================== */
+/* WRAPPER */
+/* ===================== */
+
+.cake-wrapper {
+  position: relative;
+  margin-bottom: 40px;
+}
+
+/* ===================== */
+/* GETAR */
+/* ===================== */
+
+.shake {
+  animation: shake 0.4s;
+}
+
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-6px); }
+  50% { transform: translateX(6px); }
+  75% { transform: translateX(-6px); }
+  100% { transform: translateX(0); }
+}
+
+/* ===================== */
+/* LILIN */
+/* ===================== */
+
+.candles {
+  display: flex;
+  justify-content: center;
+  gap: 19px;
+  margin-bottom: 10px;
+}
+
+.candle {
+  width: 10px;
+  height: 35px;
+  background: #ff8fa3;
+  border-radius: 6px;
+  position: relative;
+}
+
+/* API */
+.flame {
+  position: absolute;
+  top: -16px;
+  left: 49.5%;
+  transform: translateX(-50%);
+  width: 10px;
+  height: 15px;
+  background: orange;
+  border-radius: 50%;
+  animation: flicker 0.8s infinite alternate;
+}
+
+@keyframes flicker {
+  from {
+    opacity: 1;
+    transform: translateX(-50%) scale(1);
+  }
+  to {
+    opacity: 0.7;
+    transform: translateX(-50%) scale(0.8);
+  }
+}
+
+/* ===================== */
+/* KUE */
+/* ===================== */
+
+.cake {
+  width: 300px;
+}
+
+.layer {
+  margin: 0 auto;
+}
+
+/* LAPIS PALING BAWAH */
+.layer-1 {
+  width: 300px;
+  height: 80px;
+  background: #fd7979;
+  border-radius: 18px 18px 4px 4px;
+}
+
+
+/* LAPIS KE-2 */
+.layer-2 {
+  width: 260px;
+  height: 70px;
+  background: #fdacac;
+  margin-top: -10px;
+  border-radius: 20px 20px 3px 3px;
+}
+
+/* LAPIS KE-3 */
+.layer-3 {
+  width: 220px;
+  height: 60px;
+  background: #ffcdc9;
+  margin-top: -10px;
+  border-radius: 24px 24px 6px 6px;
+}
+
+/* LAPIS PALING ATAS */
+.layer-4 {
+  width: 180px;
+  height: 55px;
+  background: #feeac9;
+  margin-top: -10px;
+  border-radius: 28px 28px 10px 10px;
+}
+
+/* ===================== */
+/* BUTTON */
+/* ===================== */
+
+.blow-btn {
+  background: none;
+  border: none;
+  color: #ff6fcf;
+  font-size: 26px;
+  cursor: pointer;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.blow-btn:hover {
+  color: #e455b0;
+  transform: scale(1.05);
+}
+
+/* ===================== */
+/* CONFETTI */
+/* ===================== */
+
+.confetti-container {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.confetti {
+  position: absolute;
+  top: -20px;
+  width: 8px;
+  height: 14px;
+  background: pink;
+  animation: fall linear forwards;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(110vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* ===================== */
+/* PAGE TRANSITION */
+/* ===================== */
+
+.fade-in {
+  animation: fadeIn 0.8s ease forwards;
+}
+
+.fade-out {
+  animation: fadeOut 0.6s ease forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
