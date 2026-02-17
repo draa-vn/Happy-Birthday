@@ -19,7 +19,7 @@ body {
     font-family: 'Bree Serif', serif;
     background:
         linear-gradient(rgba(0, 0, 0, 0.6), rgba(0,0,0,0.35)),
-        url("bg.jpg") center / cover no-repeat;
+        url("img/bg.jpg") center / cover no-repeat;
 }
 
 /* AREA TENGAH */
@@ -178,7 +178,7 @@ function startScroll() {
     text.style.top = pos + "px";
 
     function scrollUp() {
-        pos -= 0.5;
+        pos -= 0.2;
         text.style.top = pos + "px";
 
         if (pos < -text.offsetHeight) {
@@ -248,7 +248,7 @@ function finalMessage() {
 
     setTimeout(() => {
         window.location.href = "ucapan3.html";
-    }, 8500);
+    }, 9000);
 }
 
 /* START */
@@ -257,4 +257,3 @@ startScroll();
 
 </body>
 </html>
-
