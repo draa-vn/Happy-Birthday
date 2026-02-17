@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Last Page</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: black;
+    overflow: hidden;
+    opacity: 0;
+    transition: opacity 2s ease;
+    cursor: default;
+}
+
+/* Fade in */
+body.show {
+    opacity: 1;
+}
+
+/* Fade out */
+body.fade-out {
+    opacity: 0;
+}
+
+img {
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    user-select: none;
+    pointer-events: none;
+}
+</style>
+</head>
+
+<body>
+
+<img src="last.jpg" alt="Last Image">
+
+<script>
+const body = document.body;
+let bolehKlik = false;
+
+// Fade in saat load
+window.addEventListener("load", () => {
+    body.classList.add("show");
+
+    // Aktifkan klik setelah 10 detik
+    setTimeout(() => {
+        bolehKlik = true;
+    }, 10000); // 10 detik
+});
+
+// Klik hanya bekerja setelah 10 detik
+document.addEventListener("click", () => {
+    if (bolehKlik) {
+        body.classList.add("fade-out");
+
+        setTimeout(() => {
+            window.location.href = "index.html";
+        }, 2000);
+    }
+});
+</script>
+
+</body>
+</html>

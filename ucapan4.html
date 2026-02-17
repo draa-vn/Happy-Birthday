@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Ucapan 3</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: black;
+    overflow: hidden;
+    opacity: 0;
+    transition: opacity 1.5s ease;
+}
+
+/* Fade in */
+body.show {
+    opacity: 1;
+}
+
+/* Fade out */
+body.fade-out {
+    opacity: 0;
+}
+
+video {
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    cursor: default;
+}
+
+/* Text klik lanjut */
+.click-text {
+    position: absolute;
+    bottom: 40px;
+    width: 100%;
+    text-align: center;
+    color: white;
+    font-family: sans-serif;
+    font-size: 18px;
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+
+.click-text.show {
+    opacity: 1;
+}
+</style>
+</head>
+
+<body>
+
+<video id="myVideo" autoplay muted playsinline>
+    <source src="ucapan4.mp4" type="video/mp4">
+    Browser tidak mendukung video.
+</video>
+
+<div class="click-text" id="clickText">
+    Klik dimana saja untuk lanjut
+</div>
+
+<script>
+const video = document.getElementById("myVideo");
+const body = document.body;
+const clickText = document.getElementById("clickText");
+
+// Fade in + paksa play saat load
+window.addEventListener("load", () => {
+    body.classList.add("show");
+
+    // Paksa play untuk jaga-jaga
+    video.play().catch((err) => {
+        console.log("Autoplay diblokir:", err);
+    });
+});
+
+// Saat video selesai
+video.addEventListener("ended", () => {
+    video.pause(); // freeze di frame terakhir
+    clickText.classList.add("show");
+
+    // Klik di mana saja untuk lanjut
+    document.addEventListener("click", goNext);
+});
+
+function goNext() {
+    body.classList.add("fade-out");
+
+    setTimeout(() => {
+        window.location.href = "last.html";
+    }, 1500);
+}
+</script>
+
+</body>
+</html>
